@@ -1,0 +1,5 @@
+Liens achats JLCPCB :
+
+https://jlcpcb.com/parts/componentSearch?searchTxt=stm32f405rgt6 
+https://jlcpcb.com/parts/componentSearch?searchTxt=mp2359dj
+https://jlcpcb.com/parts/componentSearch?searchTxt=usblc6-2sc6
