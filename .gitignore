@@ -53,3 +53,5 @@ dkms.conf
 
 # debug information files
 *.dwo
+project_v1/STM32_audio_KiCAD/.history/
+Projet_KICAD/.history/
