@@ -3,5 +3,6 @@
 
 ### TO-DO List
 
+- Remettre le photoresistor
 - Conclure schematic
 - Commencer layout PCB
