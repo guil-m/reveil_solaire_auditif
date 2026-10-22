@@ -3,5 +3,4 @@
 
 ### TO-DO List
 
-- Conclure schematic
-- Commencer layout PCB
+- Poursuivre routing
