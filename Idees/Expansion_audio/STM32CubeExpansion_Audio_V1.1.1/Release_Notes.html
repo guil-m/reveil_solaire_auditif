@@ -1,0 +1,657 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="Generator" content="Microsoft Word 15 (filtered)"><title>Release Notes of X-Cube-Audio Firmware Package</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Calibri Light",sans-serif;
+	color:#1F4D78;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style></head><body link="blue" vlink="blue">
+
+<div class="WordSection1">
+
+<p class="MsoNormal"><span style="font-family: &quot;Arial&quot;,sans-serif;">&nbsp;</span></p>
+
+<div align="center">
+
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+ <tbody><tr>
+  <td style="padding: 0in;" valign="top">
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+   <tbody><tr>
+    <td style="padding: 1.5pt;">
+    
+    <h1 style="margin-bottom: 0.25in; text-align: center;" align="center"><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,sans-serif; color: rgb(51, 102, 255);">Release
+    Notes of X-Cube-Audio Firmware Package</span></h1>
+            <h1 style="margin-bottom: 0.25in; text-align: center;" align="center"><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,sans-serif; color: rgb(51, 102, 255);">for STM32Cube Audio library software expansion</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,sans-serif; color: rgb(51, 102, 255);"> </span></h1>
+            <h1 style="margin-bottom: 0.25in; text-align: center;" align="center"><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,sans-serif; color: rgb(51, 102, 255);"> </span></h1>
+
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: black;">Copyright&nbsp;2019
+    STMicroelectronics</span></p>
+    <u1:p></u1:p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: black;"><img src="_htmresc/st_logo.png" height="126" width="171"></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="font-family: &quot;Arial&quot;,sans-serif; display: none;">&nbsp;</span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+   <tbody><tr>
+    <td style="padding: 0in;" valign="top">
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"><br>
+    </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">STM32Cube is an STMicroelectronics original initiative to ease
+    developers life by reducing development efforts, time and cost. STM32Cube
+    covers STM32 portfolio. </span></p>
+    </div>
+    
+            
+            <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">&nbsp;</span></p>
+    
+            <p class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">STM32Cube Audio Expansion</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">is a set of
+    software libraries allowing customers to build audio applications with
+    high-quality and professional results. The package offers highly optimized <b><i>Audio
+    Effects</i></b> required in embedded audio solutions to deliver a
+    high-quality listening experience, such as </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><b><i>Bass Management,</i></b></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><b><i>
+    Biquad Filtering with application examples e.g. Loudness Control, clock drift compensation, Gain management, audio
+    Virtualization for headphones and loudspeakers output, Graphical Equalization, </i></b></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><b><i>Sampling Rate Conversion, </i></b></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><b><i>Sound detector, Sound meter and Smart Volume
+    Control solution</i></b>. The package also embeds <span style="font-weight: bold;">MP3 codec libraries</span> to encode or decode an Audio stream in MP3 format (WAV format by default).<br>
+  </span></p>
+
+    <br>
+            <p class="MsoNormal"><b><i><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Major
+    features of the STM32 Audio Firmware package</span></i></b></p>
+
+    
+            <ul type="disc">
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Audio Processing Effects and dynamic parameters interface</span></b></li>
+            </ul>
+
+    
+            
+            
+            <ul type="circle">
+
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Sampling
+          Rate Conversion from 8/16/24/32/96 kHz to 48 kHz</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more
+          details refer to <span style="font-weight: bold; font-style: italic;">UM1641</span></span></li>
+              <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Sampling
+          Rate Conversion from 44.1 kHz to 48 kHz</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more
+          details refer to <span style="font-weight: bold; font-style: italic;">UM1640</span><br></span></li>
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">CDC 
+          - Clock Drift compensation </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more details refer to <span style="font-weight: bold; font-style: italic;">UM1995</span><br></span></li><ul type="disc"><ul type="circle"><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">cdc mode:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> to add or remove one sample depending 
+               on drift direction</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Biquad
+          filtering with application usage examples</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;"> </span></b><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">and Biquad
+          filter design tool, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more details refer to <span style="font-weight: bold; font-style: italic;">UM1625</span><br></span></li><ul type="disc"><ul type="circle"><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> enable/disable audio processing</span></li><li style="font-style: italic;" class="MsoNormal"><font size="-1"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">nb_sos</span>: Number of second order sections <br>
+                      </span></font></li><li style="font-style: italic;" class="MsoNormal"><font size="-1"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">biquad_coeff[]</span>: array of SOS coefficients and post-shift values.</span></font></li><li style="font-style: italic;" class="MsoNormal"><font size="-1"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">Predefined filters available:</span><br>
+                      </span></font></li><ul style="font-style: italic;"><li class="MsoNormal"><font size="-1"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Notch:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           remove notch frequency at 1000Hz</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><br>
+                        </span></font></li><li class="MsoNormal"><font size="-1"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Loudness:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           compensation of perceived loudness level versus frequency</span></font></li><li class="MsoNormal"><font size="-1"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Low pass:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">woofer low
+           pass filter to remove frequencies above 150 Hz</span></font></li><li class="MsoNormal"><font size="-1"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">High pass</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">:
+           high pass filter to remove frequencies below 150 Hz</span></font></li><li class="MsoNormal"><font size="-1"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Speech
+           Enhancement</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">: Improves dialogues perception</span></font></li></ul></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">OmniSurround
+          - Multichannel virtualization and Stereo Widening for loudspeakers, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more details refer to <span style="font-weight: bold; font-style: italic;">UM1633 and UM1655</span> respectively<br>
+</span></li><ul type="disc"><ul type="circle">
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Omni2Enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Virtualization effect enable/disable</span></li>
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Omni2Strength:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> modifies
+           the virtual position of the front speakers, opens the angle when strength
+           increases (100% maximum widening position)<br>
+</span></li><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Omni2ListeningAngle:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">used to adapt listening angle from speakers distance</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HPV
+          - Headphone virtualization, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more details refer to<span style="font-weight: bold;"> <span style="font-style: italic;">UM2024</span></span></span></li><ul type="disc"><ul type="circle">
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HpvEnable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> virtualization effect enable/disable</span></li>
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HpvStrength:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Effect strength from 0 to 100%</span></li><li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HpvHTEnable:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">activates/de-activates head tracking usage</span></li><li class="MsoNormal"><b style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HpvHTAzimuth:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-style: italic;">head rotation angle when head tracking is activated in range ]-180,+180]</span><br>
+</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Smart
+          Volume Control</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> incl. automated Dynamic Range Compression,</span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> for more
+          details refer to <span style="font-weight: bold; font-style: italic;">UM1642</span></span></li><ul type="disc"><ul type="circle"><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Target_volume_dB:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           range -80/+30dB in 1/2dB step<br></span></li>
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Mute:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           to mute or unmute the signal</span></li>
+<li style="font-style: italic;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">enable_compr:</span> enable or disable compression<br>
+</span></li><li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">attack_time:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           time it takes the Dynamic Range Compressor to decrease the gain once
+           the signal overshoots a pre-defined level threshold</span></li><li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">release_time:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           time it takes the Dynamic Range Compressor to bring the gain back to
+           normal level once the signal falls below a pre-defined level
+           threshold</span></li><li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">high_quality:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           the Dynamic Range Compressor level is updated at each input sample
+           (can be updated every 32nd input sample to lower the processor load,
+           at the expense of possible audio quality degradation for some input
+           signals)</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Gain Manager,  
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for more details refer to <span style="font-weight: bold; font-style: italic;">UM2006</span></span></li><ul type="disc"><ul type="circle"><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">target volume:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Digital
+           gain</span></li><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">mute:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> to mute or unmute the signal</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BAss
+          Manager, </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <span style="font-weight: bold; font-style: italic;">UM1778</span></span></li><ul type="disc"><ul type="circle">
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+           processing of the bass frequencies enable/disable</span></li>
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">bass_vol:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">modification
+           of bass signal volume in dB (level from -24 to +24 with 1dB step)</span></li>
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">freq_xover:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">modification
+           of bass cut-off frequency (60, 70, 80, 100, 120, 150, 180, 200, 220,
+           250, 280&nbsp; and 300Hz)</span></li>
+<li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">limiter_enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Limiter
+           enable/disable</span></li><li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">limiter_release_time:
+           </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">modification
+           of the limiter release time (from 1ms to 1s, default 200ms)</span></li></ul></ul><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Graphical
+          Equalizer</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">,
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <span style="font-weight: bold; font-style: italic;">UM1798</span></span></li>
+              <ul type="disc">
+                <ul type="circle">
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Graphical
+           Equalization enable/disable</span></li><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">gain_preset_idx:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> Some
+           Presets are available: User, Pop, Jazz, Rock, Vocal, Classical and HipHop</span></li>
+                  
+                  <li style="font-style: italic;" class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">user_gain_per_band_dB:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> User can change gains of each
+           band from -12db to +12dB for possible number of bands (5, 8 or 10)</span></li>
+                </ul>
+              </ul>
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; font-weight: bold;"></span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">SDR - Sound Detector</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">,
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <span style="font-weight: bold; font-style: italic;">UM2184</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span>
+                  <ul type="circle"><li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> processing enable/disable</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">ratio_thr1_dB:</span> threshold (dB) above which the SDR state goes from Inactive to Active in range [+1,+40]</span></li><li style="font-style: italic;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">ratio_thr2_dB:</span> threshold (dB) below which the SDR state goes from Active to Inactive in range [+1,+40]</span></li><li style="font-style: italic;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">noise_pwr_min_dB:</span> Minimum noise power below which noise power estimation can't go in range [-87:0]</span></li><li style="font-style: italic;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">hangover_nb_frame:</span> number of frames of hangover for state going from Active to Inactive.</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; font-style: italic;"><span style="font-weight: bold;">output_state:</span> SDR decision.</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-style: italic;"> </span><br>
+                      </span></li></ul>
+                  <b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b></li>
+              <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">SMR - Sound Meter</span></b><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">,
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <span style="font-weight: bold; font-style: italic;">UM2031</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b>
+                  
+                <ul type="circle">
+
+                  <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Enable:</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> processing enable/disable</span></li>
+                  <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">averaging_time:</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: normal;"> time constant used to smooth the instantaneous level in range [0:10000]ms</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;"></span><br>
+                    </span></li>
+                  <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;"><span style="font-style: italic;">filter_type:</span></span><span style="font-style: italic;"> pre-filtering filters [None, A-weighting, C-weighting, DC removal]</span></span></li>
+                  <li style="font-style: italic;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold;">mean_left_level:</span> sound level of the left channel<br>
+                      </span></li>
+                  
+                  <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-weight: bold; font-style: italic;">mean_right_level:</span><span style="font-style: italic;"> sound level on the right channel</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="font-style: italic;"></span></span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b></li>
+                </ul>
+              </li>
+              <li class="MsoNormal"><br>
+                <b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Embedded Audio Codecs libraries</span></b></li>
+              <li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b>
+                <ul type="circle">
+
+                  <span style="font-weight: bold;"></span>
+                </ul>
+
+                  </li>
+              <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; font-weight: bold;">MP3 Decoder (MP3 Dec)</span><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">,
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <span style="font-weight: bold; font-style: italic;"><a href="./Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Dec/doc/SpiritMP3Dec_UG.pdf">Spirit MP3 decoder User Guide</a><br>
+
+                </span></span></li>
+              <ul>
+<li class="MsoNormal"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Decoder
+for MPEG-1,2 or 2.5 formats (for layers 1, 2 and 3) supporting
+constant, free format or VBR variable bit rate for mono or stereo audio
+input streams with PCM (Pulse Code Modulation) decoded output</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; font-weight: bold;"></span></li>
+              </ul>
+              <li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; font-weight: bold;">MP3 Encoder (MP3 Enc)</span><b><span style="font-size: 7.5pt; font-family: &quot;Verdana&quot;,sans-serif;">,
+          </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for
+          more details refer to <a href="./Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Dec/doc/SpiritMP3Enc_UG.pdf"><span style="font-weight: bold; font-style: italic;">Spirit MP3 encoder User Guide</span></a></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><br>
+  </span></li>
+              <ul>
+<li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Encoder
+for MPEG-1,2 or 2.5 formats (for layer 3 only) supporting fixed or free
+format bit rate for mono or stereo audio input streams</span></li>
+              </ul>
+
+            
+            </ul>
+
+
+            </div>
+
+            <div style="margin-left: 30pt;">
+            <ul type="disc">
+              <ul type="circle">
+                <ul type="disc">
+                  <ul type="circle">
+
+     
+                  </ul>
+
+    
+                </ul>
+
+  
+              </ul>
+
+  
+            </ul>
+
+    <br>
+    <p class="MsoNormal" style="margin-left: 6pt;"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">STM32Cube Audio
+    Expansion</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">
+    comes with ready-to-use examples of implementation for the STM32F4xx<b> </b>and </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F7xx </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">devices.
+They can be found under \Projects\STM32XX-Discovery\Applications\Audio.
+These integration examples are provided on STM32746G-Discovery and
+STM32469I-Discovery boards.<br>
+</span></p>
+    <p class="MsoNormal" style="margin-left: 6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">&nbsp;</span></p>
+    <p class="MsoNormal" style="margin-left: 6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">The package contains the
+    necessary Drivers (HAL, CMSIS, BSP) and Middleware (Audio, USB) to compile
+    and execute the application.</span></p>
+            <p class="MsoNormal" style="margin-left: 6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"><br>
+            </span></p>
+            <p class="MsoNormal" style="margin-left: 6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">The
+    HAL drivers provided within this package supports
+    the&nbsp;STM32F44xx/45xx/46xx/47xx and</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"> STM32F74xx/75xx/76xx/&nbsp; 77xx </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">lines<b>.</b></span><br>
+            <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></p>
+            <p class="MsoNormal" style="margin-left: 6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"><br>
+ </span></p>
+
+    </div>
+
+    <span style="font-family: &quot;Times New Roman&quot;,serif;"><br>
+            </span>
+    
+            <ul style="margin-top: 0in;" type="disc">
+
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Below
+         <b>links to the most useful documents</b> </span></li>
+     
+              <ul style="margin-top: 0in;" type="circle">
+
+      
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00105256.pdf" target="_blank">UM1720</a>: STM32Cube USB host library</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00108129.pdf" target="_blank">UM1734</a>: STM32Cube USB device library</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00189702.pdf" target="_blank">UM1725</a>: Description of STM32F4xx HAL drivers</span></li>
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00180213.pdf" target="_blank">UM1730</a>: Getting started with STM32CubeF4 firmware
+          package for STM32F4xx series</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00189702.pdf" target="_blank">UM1905</a>: Description of STM32F7xx HAL drivers</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00180213.pdf" target="_blank">UM1891</a>: Getting started with STM32CubeF7 firmware
+          package for STM32F7xx series</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><a href="Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Enc/doc/SpiritMP3Dec_UG.pdf"><span style="color: rgb(0, 0, 210);">MP3Dec_UG</span></a>: Spirit MP3 Decoder User's Guide<br>
+</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"><span style="color: rgb(0, 0, 210);"><a href="Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Enc/doc/SpiritMP3Enc_UG.pdf">MP3Enc_UG</a>:</span> Spirit MP3 Encoder User's Guide<br>
+                  </span></li>
+
+
+     
+              </ul>
+
+    
+            </ul>
+
+    <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">Update History</span></h2>
+    
+            
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; margin-right: 500pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: white;">V1.1.1 / 10-June-2019</span></h3>
+
+
+    
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Main Changes</span></u></b></p>
+
+
+    
+            
+            <ul style="margin-top: 0in;" type="disc">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">X-CUBE-AUDIO firmware package </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">some PRs correction (as license files updates, GCC projects settings</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> correction</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">, unused parts removed; cf IntBugzilla tickets 59364, 65890<span style="text-decoration: underline;"></span></span><a style="text-decoration: underline;" href="https://intbugzilla.st.com/show_bug.cgi?id=65890"><span style="font-size: 10pt; font-family: Arial; color: black; font-weight: bold;"></span></a><span style="font-size: 10pt; font-family: Arial; color: black; font-weight: bold; text-decoration: underline;"></span><span style="font-size: 10pt; font-family: Arial; color: black; text-decoration: underline;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">). </span><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></u></b></li>
+            </ul>
+
+            <b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">&nbsp;&nbsp;&nbsp; </span><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Contents</span></u></b><br>
+
+
+    
+            
+            <div style="margin-left: 40px;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></u></b></div>
+
+            <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Same features as V1.1.0, only minor maintenance updates.</span><br>
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; margin-right: 500pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: white;">V1.1.0 / 5-June-2018</span></h3>
+
+    
+            <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Main Changes</span></u></b></p>
+
+    
+            <ul style="margin-top: 0in;" type="disc">
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">X-CUBE-AUDIO firmware package </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Update </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">to provide integration examples of WAV and MP3 codecs using SRC to adapt sampling rate to encode and decode input audio data.</span><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></u></b></li>
+            </ul>
+            <b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">&nbsp;&nbsp;&nbsp; </span><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Contents</span></u></b><br>
+
+    
+            <div style="margin-left: 40px;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></u></b></div>
+            <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">&nbsp; &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Same features as V1.0.0 with Following added drivers <br>
+            </span>
+            <ul>
+              <li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Middlewares</span></li>
+            </ul>
+            <ul>
+              <ul>
+                <li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 SpiritDSP MP3 Encoder V2.2.0</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Enc/Release_Notes.html">release
+          notes</a>)</span></li>
+              </ul>
+            </ul>
+            <ul>
+              <ul>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 SpiritDSP MP3 Decoder V2.2.0</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Dec/Release_Notes.html">release
+          notes</a>)</span></li>
+              </ul>
+            </ul>
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; margin-right: 500pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: white;">V1.0.0 / 15-October-2017</span></h3>
+
+
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Main Changes</span></u></b></p>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">First
+         official release of X-CUBE-AUDIO firmware package </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">for STM32Cube Audio library software Expansion</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">.</span></li>
+     
+    </ul>
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Contents</span></u></b></p>
+    <ul class="MsoNormal" style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Drivers (for STM32469I-Discovery)<br>
+</span></li>
+     <ul style="margin-top: 0in;" type="circle">
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Cortex-M
+          CMSIS V4.5 (<a href="Drivers/CMSIS/index.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          Common V4.0.1 (<a href="Drivers/BSP/Components/Common/Release_Notes.html">release
+          notes</a>)</span></li>
+
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F4xx
+          CMSIS V2.6.1 (<a href="Drivers/CMSIS/Device/ST/STM32F4xx/Release_Notes.html">release
+          notes</a>)</span></li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F4xx
+          HAL V1.7.0 (<a href="Drivers/STM32F4xx_HAL_Driver/Release_Notes.html">release
+          notes</a>)</span> </li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          STM32F469I-Discovery V2.0.0 (<a href="Drivers/BSP/STM32F469I-Discovery/Release_Notes.html">release
+          notes</a>)</span></li>
+                
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP cs43l22 V2.0.2: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">AUDIO codec component</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Drivers/BSP/Components/cs43l22/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP ft6x06 V1.0.1: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">TS component</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Drivers/BSP/Components/ft6x06/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP otm8009a V1.0.1: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">LCD component</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Drivers/BSP/Components/otm8009a/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">BSP n25q128a
+V1.0.0:</span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">QSPI component</span><span style="font-family: Verdana; font-size: 10pt;"> </span><span style="font-family: Verdana; font-size: 10pt;">(<a style="color: blue; text-decoration: underline;" href="../../../../SVN_projects/STM32Cube_FW_F7_Trunk/Firmware/Drivers/BSP/Components/n25q128a/Release_Notes.html">release
+notes</a>)</span></li>
+
+
+     </ul>
+     
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Drivers </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">(for STM32746G-Discovery)</span>
+         </li>
+              <ul style="margin-top: 0in;" type="circle">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Cortex-M
+          CMSIS V4.5 (<a href="Drivers/CMSIS/index.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          Common V4.0.1 (<a href="Drivers/BSP/Components/Common/Release_Notes.html">release
+          notes</a>)</span></li>
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F7xx
+          CMSIS V1.1.2 (<a href="Drivers/CMSIS/Device/ST/STM32F7xx/Release_Notes.html">release
+          notes</a>)</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F7xx
+          HAL V1.1.2 (<a href="Drivers/STM32F7xx_HAL_Driver/Release_Notes.html">release
+          notes</a>)</span> </li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          STM32746G-Discovery V1.1.0 (<a href="Drivers/BSP/STM32746G-Discovery/Release_Notes.html">release
+          notes</a>)</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          ft5336 V1.0.0: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">TS component </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">(<a href="Drivers/BSP/Components/ft5336/Release_Notes.html">release
+          notes</a>)</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          rk043fn48h V1.0.0: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">LCD component</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Drivers/BSP/Components/rk043fn48h/Release_Notes.html">release
+          notes</a>)</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">BSP
+          wm8994 V2.1.0:</span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR"> AUDIO codec component</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Drivers/BSP/Components/wm8994/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">BSP n25q128a
+V1.0.0: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">QSPI component</span><span style="font-family: Verdana; font-size: 10pt;"> </span><span style="font-family: Verdana; font-size: 10pt;">(<a style="color: blue; text-decoration: underline;" href="../../../../SVN_projects/STM32Cube_FW_F7_Trunk/Firmware/Drivers/BSP/Components/n25q128a/Release_Notes.html">release
+notes</a>)</span></li>
+                <li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">BSP ov9655
+V1.0.0: </span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="FR">CAMERA component</span><span style="font-family: Verdana; font-size: 10pt;"> </span><span style="font-family: Verdana; font-size: 10pt;">(<a style="color: blue; text-decoration: underline;" href="../../../../SVN_projects/STM32Cube_FW_F7_Trunk/Firmware/Drivers/BSP/Components/ov9655/Release_Notes.html">release
+notes</a>)</span></li>
+
+              </ul>
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Middlewares</span>
+         </li>
+
+     <ul style="margin-top: 0in;" type="circle">
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          USB Host Library V3.2.2 (<a href="Middlewares/ST/STM32_USB_Host_Library/Release_Notes.html">release
+          notes</a>)</span> </li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          USB Device Library V2.4.2 (<a href="Middlewares/ST/STM32_USB_Device_Library/Release_Notes.html">release
+          notes</a>)</span> </li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">FatFS
+          R0.11<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">
+          </span></span>(<a href="Middlewares/Third_Party/FatFs/doc/updates.txt">release
+          notes</a>)&nbsp;ST modified 20150508 (<a href="Middlewares/Third_Party/FatFs/src/st_readme.txt">release
+          notes</a>)</span> </li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 GREQ audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/GREQ/Release_Notes.html">release
+          notes</a>)</span> </li>
+      
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          SRC236 audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/SRC236/Release_Notes.html">release
+          notes</a>)</span> </li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          SRC441 audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/SRC441/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Common audio software Library V1.0.1</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/Common/Inc/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 BIQ audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/BIQ/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 BAM audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/BAM/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          SVC audio software Library V1.0.4</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/SVC/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 HPV audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/HPV/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 GAM audio software Library V1.0.3</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/GAM/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          SMR audio software Library V1.0.5</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/SMR/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32
+          SDR audio software Library V1.0.4</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/SDR/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 OMNI2 audio software Library V1.0.3</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/OMNI2/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 OMNI2_SW audio software Library V1.0.3</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/OMNI2_SW/Release_Notes.html">release
+          notes</a>)</span></li>
+                <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32 CDC audio software Library V1.0.2</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (<a href="Middlewares/ST/STM32_Audio/Addons/CDC/Release_Notes.html">release
+          notes</a>)</span></li></ul>
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Utilities</span>
+         </li>
+     <ul style="margin-top: 0in;" type="circle">
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">CPU<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">
+          </span></span>V1.1.0<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;"> </span></span>(<a href="Utilities/CPU/Release_Notes.html">release notes</a>)</span></li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Fonts<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">
+          </span></span>V1.0.0<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;"> </span></span>(<a href="Utilities/Fonts/Release_Notes.html">release notes</a>)</span></li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">Log<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">
+          </span></span>V1.0.0<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;"> </span></span>(<a href="Utilities/Log/Release_Notes.html">release notes</a>)</span></li>
+      <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">JPEG
+          V2.0.0 (<a href="Utilities/JPEG/Release_Notes.html">release
+          notes</a>)</span></li>
+     </ul>
+    </ul>
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 17.25pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Development Toolchains and Compilers for X-Cube-Audio integration examples<br>
+</span></u></b></p>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">IAR
+         Embedded Workbench for ARM (EWARM) toolchain V7.70.1 + ST-Link</span></li>
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">RealView
+         Microcontroller Development Kit (MDK-ARM) toolchain V5.23<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">.0
+         </span></span>+ ST-LINK</span></li>
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">System
+         Workbench for STM32 (SW4STM32) toolchain V2.1 + ST-Link</span></li></ul>
+            <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 17.25pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Compilers for Audio library binaries generation<br>
+</span></u></b></p>
+
+    
+            <ul style="margin-top: 0in;" type="disc">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">IAR
+         Embedded Workbench for ARM (EWARM) toolchain V7.40 + ST-Link</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">RealView
+         Microcontroller Development Kit (MDK-ARM) toolchain V5.23.0<span class="apple-converted-space"><span style="font-family: &quot;Verdana&quot;,sans-serif;">
+         </span></span>+ ST-LINK</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">System
+         Workbench for STM32 (SW4STM32) toolchain V1.13.1 + ST-Link</span></li>
+            </ul>
+            <ul style="margin-top: 0in;" type="disc">
+
+    
+            </ul>
+
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 17.25pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Supported Devices and STM32 boards</span></u></b></p>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F401xx/ STM32F407xx/ STM32F411xx/ STM32F412xx/ STM32F429xx/ </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> STM32F446xx</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> devices</span>
+         </li>
+     <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F469xx/479xx
+         devices RevZ</span></li>
+     
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F469I-DISCO
+         board RevB</span></li>
+
+    </ul>
+    
+            <ul style="margin-top: 0in;" type="disc">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F765xx/ STM32F767xx/ STM32F769xx/ STM32F777xx/ STM32F779xx devices</span>
+         </li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F756/746/745
+         devices RevZ</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32F746G-DISCO
+         board RevB</span><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;"></span></u></b></li>
+            </ul>
+
+    
+    
+    <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><a name="License"></a><span style="font-size: 12pt; color: white;">License</span></h2>
+    <p class="MsoNormal" style="margin-bottom: 12pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">This software package is licenced under ST licence SLA0048, 
+    (the "License"); You may not use this package except in compliance with the License. You may obtain a
+    copy of the License at:</span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://www.st.com/SLA0048" target="_blank">http://www.st.com/SLA0048</a></span></p>
+    <br>
+    <div class="MsoNormal" style="text-align: center;" align="center"><span style="color: black;">
+    <hr align="center" size="2" width="100%">
+    </span></div>
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in; text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">For
+    complete documentation on </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">STM32<span style="color: black;"> Microcontrollers
+    visit </span><u><span style="color: blue;"><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com/STM32</a></span></u></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p class="MsoNormal">&nbsp;</p>
+
+</div>
+
+</body></html>
