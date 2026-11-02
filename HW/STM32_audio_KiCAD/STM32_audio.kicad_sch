@@ -23312,7 +23312,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 281.94 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -24953,7 +24953,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 147.32 205.74 0)
 			(hide yes)
 			(show_name no)
@@ -26005,7 +26005,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 101.6 229.87 0)
 			(hide yes)
 			(show_name no)
@@ -26325,7 +26325,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 147.32 224.79 0)
 			(hide yes)
 			(show_name no)
@@ -30352,7 +30352,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 397.51 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -30895,7 +30895,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 135.89 209.55 0)
 			(hide yes)
 			(show_name no)
@@ -32474,6 +32474,7 @@
 	(symbol
 		(lib_id "Device:C_Small")
 		(at 88.9 73.66 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -32481,10 +32482,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "fd6bef88-b9ea-4b02-8903-6604a0829fe2")
 		(property "Reference" "C36"
-			(at 91.44 72.3899 0)
+			(at 86.36 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -32495,7 +32495,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 91.44 74.9299 0)
+			(at 86.36 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
