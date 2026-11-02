@@ -1,0 +1,59 @@
+
+(rules PCB STM32_audio.dsn
+  (snapAngle 
+    fortyfive_degree
+  )
+  (rule
+    (width 200.0)
+    (clearance 200.0)
+    (clearance 100.0 (type smd_to_turn_gap))
+    (clearance 50.0 (type smd))
+    (clearance 0.0 (type "board_edge"))
+  )
+  (padstack "Via[0-3]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle In1.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle In2.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-3]_600:300_um" "Via[0-3]_600:300_um" default
+  )
+  (viaRule
+    default "Via[0-3]_600:300_um"
+  )
+  (viaRule
+    default "Via[0-3]_600:300_um"
+  )
+  (class default
+    GND "ADC_AVDD" "BUCK_IN" "BUCK_EN" "ADC_LDOO" "ADC_AGND" "/LDR_S" "ADC_DVDD"
+    "Net-(J2-Pin_2)" "Net-(J2-Pin_3)" "ADC_OUTR" "R_CHANNEL_LINE_OUT" "Net-(U5-BP)" "BUCK_BST" "BUCK_SW" "SD_D2"
+    "ADC_VNEG" "Net-(U1-VCAP_2)" "SD_D1" "SENSOR_EXTI1" "Net-(D3-K)" +12V "I2C1_SDA" "HSE_IN"
+    "ADC_CAPM" "BUCK_FB" "Net-(R7-Pad2)" "Net-(U1-VCAP_1)" "Net-(F1-Pad2)" SWDIO "Net-(J15-Pin_2)" "ADC_OUTL"
+    "I2S2_CK" "I2S2_SD" "I2S2_WS" "PHOTOR_ADC" BOOT0 "Net-(SW1-B)" "ALARM_DISABLE" "Net-(D4-K)"
+    "SD_D3" "SD_CMD" "SD_CLK" "Net-(J7-DET_B)" "SD_D0" "SD_DET" "USB_CONN_D_+" "USB_CONN_D_-"
+    "USB_D-" +5V "USB_D+" "ADC_DGND" "HSE_OUT" SWCLK "Net-(J15-Pin_3)" "I2C1_SCL"
+    "Net-(C12-Pad1)" "USART3_TX" "USART3_RX" "unconnected-(U6-NC-Pad4)" "Net-(D1-K)" "Net-(J15-Pin_4)" NRST "L_CHANNEL_LINE_OUT"
+    "Net-(J7-SHIELD)" "LED_STATUS" SWO "unconnected-(J5-ID-Pad4)" "unconnected-(U1-PC13-Pad2)" "unconnected-(U1-PC14-Pad3)" "unconnected-(U1-PC15-Pad4)" "unconnected-(U1-PC2-Pad10)"
+    "unconnected-(U1-PC3-Pad11)" "unconnected-(U1-PA0-Pad14)" "unconnected-(U1-PA1-Pad15)" "unconnected-(U1-PA3-Pad17)" "unconnected-(U1-PA4-Pad20)" "unconnected-(U1-PA5-Pad21)" "unconnected-(U1-PA6-Pad22)" "unconnected-(U1-PA7-Pad23)"
+    "unconnected-(U1-PC4-Pad24)" "unconnected-(U1-PC5-Pad25)" "unconnected-(U1-PB1-Pad27)" "unconnected-(U1-PB2-Pad28)" "unconnected-(U1-PB14-Pad35)" "unconnected-(U1-PC6-Pad37)" "unconnected-(U1-PC7-Pad38)" "unconnected-(U1-PA8-Pad41)"
+    "unconnected-(U1-PA9-Pad42)" "unconnected-(U1-PA10-Pad43)" "unconnected-(U1-PB4-Pad56)" "unconnected-(U1-PB5-Pad57)" "unconnected-(U1-PB8-Pad61)" "unconnected-(U1-PB9-Pad62)"
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
