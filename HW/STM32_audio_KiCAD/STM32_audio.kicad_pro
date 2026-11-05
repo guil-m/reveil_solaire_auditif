@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 1.27
+          "drill": 0.0,
+          "height": 1.5,
+          "width": 0.8
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -74,9 +74,23 @@
           "gap": 0.0,
           "via_gap": 0.0,
           "width": 0.0
+        },
+        {
+          "gap": 0.2032,
+          "via_gap": 0.0,
+          "width": 0.261112
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "hole_clearance|201150000|75250000|80701a5b-9abe-49c4-b3b9-447c738d0091|98aa7610-f727-42e9-9b7f-2e63e6d1b317",
+          "trou oblong métallisé « SH » (net GND) et pastille CMS « SH » (net GND) qui le chevauche, à 0,6 mm du centre donc règle utilisateur violé à cause du design de l’USB…"
+        ],
+        [
+          "hole_clearance|201850000|82250000|be24470f-b360-4757-b434-4d2ebbf8e71a|f722ccf4-d397-465d-8fa3-d1091a17a186",
+          "trou oblong métallisé « SH » (net GND) et pastille CMS « SH » (net GND) qui le chevauche, à 0,6 mm du centre donc règle utilisateur violé à cause du design de l’USB…"
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -178,7 +192,6 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
-          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -190,7 +203,6 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
-          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -202,7 +214,6 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
-          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -214,7 +225,11 @@
       ],
       "track_widths": [
         0.0,
-        0.3
+        0.3,
+        0.3556,
+        0.5,
+        0.75,
+        1.0
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -558,15 +573,15 @@
     "meta": {
       "version": 5
     },
-    "net_colors": {},
-    "netclass_assignments": {},
+    "net_colors": null,
+    "netclass_assignments": null,
     "netclass_patterns": []
   },
   "pcbnew": {
     "last_paths": {
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "gerber/",
       "specctra_dsn": "STM32_audio.dsn",
       "step": "",
       "vrml": ""
@@ -671,6 +686,36 @@
           "label": "Sim.Pins",
           "name": "Sim.Pins",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Type",
+          "name": "Sim.Type",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Device",
+          "name": "Sim.Device",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "LCSC Part #",
+          "name": "LCSC Part #",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "KLC_S3.3",
+          "name": "KLC_S3.3",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "KLC_S4.1",
+          "name": "KLC_S4.1",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -729,7 +774,7 @@
         "uuid": "09b71dce-dc65-47b5-b320-fc8fa841289b"
       }
     ],
-    "used_designators": "#FLG1-6,#PWR1-85,BT1,C1-43,D1-6,F1,FB1,H1-4,J1-15,L1-2,NT1,Q1,R1-29,SW1-2,U1-6,Y1-3",
+    "used_designators": "Q1,NT1,J1-15,L1-2,H1-4,BT1,R1-29,FB1,C1-43,SW1-2,U1-6,F1,Y1-3,#PWR1-85,D1-6,#FLG1-6",
     "variants": []
   },
   "sheets": [
