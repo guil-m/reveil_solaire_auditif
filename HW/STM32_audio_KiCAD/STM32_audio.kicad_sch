@@ -11358,16 +11358,6 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 76.2) (xy 224.79 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "221f31e7-cb0c-4472-92fc-b95926e416b6")
-	)
-	(wire
-		(pts
 			(xy 134.62 68.58) (xy 134.62 67.31)
 		)
 		(stroke
@@ -12018,16 +12008,6 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 78.74) (xy 224.79 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ba7834d-d0d5-4a74-832d-aeb69a00475d")
-	)
-	(wire
-		(pts
 			(xy 224.79 113.03) (xy 227.33 113.03)
 		)
 		(stroke
@@ -12195,16 +12175,6 @@
 			(type default)
 		)
 		(uuid "557244db-6bb4-4860-b1ae-a13348e49bb7")
-	)
-	(wire
-		(pts
-			(xy 220.98 73.66) (xy 224.79 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "55a2d37a-3f4e-4a12-a2b7-4a79cdb91e0f")
 	)
 	(wire
 		(pts
@@ -13208,7 +13178,7 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 76.2) (xy 215.9 76.2)
+			(xy 212.09 76.2) (xy 224.79 76.2)
 		)
 		(stroke
 			(width 0)
@@ -13248,7 +13218,7 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 73.66) (xy 215.9 73.66)
+			(xy 212.09 73.66) (xy 224.79 73.66)
 		)
 		(stroke
 			(width 0)
@@ -13818,7 +13788,7 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 78.74) (xy 215.9 78.74)
+			(xy 212.09 78.74) (xy 224.79 78.74)
 		)
 		(stroke
 			(width 0)
@@ -17761,7 +17731,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" ""
+		(property "LCSC Part #" "C5280579"
 			(at 120.65 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -20108,7 +20078,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Battery:BatteryHolder_Keystone_103_1x20mm"
+		(property "Footprint" "Battery:BatteryHolder_Keystone_1060_1x2032"
 			(at 347.98 34.036 90)
 			(hide yes)
 			(show_name no)
@@ -20174,7 +20144,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" ""
+		(property "LCSC Part #" "C22363833"
 			(at 347.98 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -20668,7 +20638,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" ""
+		(property "LCSC Part #" "C176812"
 			(at 290.83 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -21997,7 +21967,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D1.8mm_W3.3mm_H2.4mm"
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 312.42 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -22041,7 +22011,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" ""
+		(property "LCSC Part #" "C2289"
 			(at 312.42 31.75 90)
 			(hide yes)
 			(show_name no)
@@ -23345,7 +23315,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "57bf4cd3-634b-4e4d-bb29-77ce9940321d")
 		(property "Reference" "H1"
@@ -24103,118 +24073,6 @@
 			(project "STM32_audio"
 				(path "/09b71dce-dc65-47b5-b320-fc8fa841289b"
 					(reference "#PWR027")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 218.44 76.2 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5e9e10bf-d35a-4648-8d0b-3993c477a5f2")
-		(property "Reference" "R10"
-			(at 221.996 74.93 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Value" "22"
-			(at 215.392 74.93 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 218.44 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 218.44 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 218.44 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C23345"
-			(at 218.44 76.2 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S3.3" ""
-			(at 218.44 76.2 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S4.1" ""
-			(at 218.44 76.2 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "aafa2806-9a9b-44ec-a2f8-fab0adc91e2c")
-		)
-		(pin "2"
-			(uuid "6dd64721-3947-4a03-a629-683900f572cc")
-		)
-		(instances
-			(project "STM32_audio"
-				(path "/09b71dce-dc65-47b5-b320-fc8fa841289b"
-					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -25928,7 +25786,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "72008981-a97a-438d-8db4-899038bc8164")
 		(property "Reference" "H3"
@@ -26615,10 +26473,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "79d7ee38-eee0-4781-b529-6cc3569ca233")
 		(property "Reference" "J8"
 			(at 276.86 76.1999 0)
@@ -27310,10 +27168,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "82899644-03ff-4776-8489-55ad1339aa6e")
 		(property "Reference" "J2"
@@ -28271,10 +28129,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "920e7dd5-6f9e-4597-99ac-7235af5af395")
 		(property "Reference" "J1"
@@ -30473,7 +30331,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "afc62e7d-f598-40ad-bddc-937779b9537c")
 		(property "Reference" "H4"
@@ -31899,118 +31757,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 218.44 78.74 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c9039324-4e92-4065-b062-99e4a26e1101")
-		(property "Reference" "R11"
-			(at 221.996 77.47 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Value" "22"
-			(at 215.392 77.47 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 218.44 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 218.44 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 218.44 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C23345"
-			(at 218.44 78.74 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S3.3" ""
-			(at 218.44 78.74 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S4.1" ""
-			(at 218.44 78.74 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ea4555bd-9d54-4ade-8d96-fdf49f4af70a")
-		)
-		(pin "2"
-			(uuid "7cc37a6b-d049-401d-b9dd-86b5398e2cd4")
-		)
-		(instances
-			(project "STM32_audio"
-				(path "/09b71dce-dc65-47b5-b320-fc8fa841289b"
-					(reference "R11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 16.51 71.12 0)
 		(unit 1)
@@ -32437,10 +32183,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "d19a8ebf-fd3e-46e9-a13e-23c0b4416039")
 		(property "Reference" "J15"
@@ -34155,118 +33901,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 218.44 73.66 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e6b2e6a3-575c-48cd-8138-4063d60c9c78")
-		(property "Reference" "R9"
-			(at 221.234 72.136 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Value" "22"
-			(at 215.646 72.136 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 218.44 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 218.44 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 218.44 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C23345"
-			(at 218.44 73.66 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S3.3" ""
-			(at 218.44 73.66 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KLC_S4.1" ""
-			(at 218.44 73.66 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "62abc7f9-7ec2-427e-908b-92d25d2154a1")
-		)
-		(pin "2"
-			(uuid "ac7caa9e-92a2-4c32-b06f-5dac027f1b54")
-		)
-		(instances
-			(project "STM32_audio"
-				(path "/09b71dce-dc65-47b5-b320-fc8fa841289b"
-					(reference "R9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 345.44 133.35 0)
 		(unit 1)
@@ -34852,7 +34486,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "f007fa54-f0b1-413c-a9d6-b86ba7f641c3")
 		(property "Reference" "H2"
@@ -35273,10 +34907,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "f58e92e8-502e-42e7-9919-d74998ab0333")
 		(property "Reference" "J9"
 			(at 288.29 158.7499 0)
@@ -35522,10 +35156,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "fbd98022-1ba8-4f85-a480-fad85d42669e")
 		(property "Reference" "J13"
@@ -36002,7 +35636,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" ""
+		(property "LCSC Part #" "C2135"
 			(at 355.6 30.48 0)
 			(hide yes)
 			(show_name no)
