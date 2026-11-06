@@ -20144,7 +20144,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C22363833"
+		(property "LCSC Part #" "C238069"
 			(at 347.98 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -22316,7 +22316,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C14259"
+		(property "LCSC Part #" "C30197555"
 			(at 154.94 17.78 0)
 			(hide yes)
 			(show_name no)
@@ -23340,7 +23340,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_4.3mm_M4_Pad_Via"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 232.41 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -25811,7 +25811,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_4.3mm_M4_Pad_Via"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 232.41 175.26 0)
 			(hide yes)
 			(show_name no)
@@ -30356,7 +30356,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_4.3mm_M4_Pad_Via"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 232.41 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -31040,7 +31040,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C221841"
+		(property "LCSC Part #" "C963206"
 			(at 102.87 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -34511,7 +34511,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_4.3mm_M4_Pad_Via"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 232.41 170.18 0)
 			(hide yes)
 			(show_name no)
