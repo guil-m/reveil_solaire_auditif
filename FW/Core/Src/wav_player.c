@@ -1,7 +1,8 @@
 /**
  ******************************************************************************
- * @file    wav_player.c
- * @brief   Lecteur WAV : carte SD (FatFs/SDIO) -> I2S2 (DMA circulaire) -> PCM5102A
+ * @file  wav_player.c
+ * @author Alex MEURILLON ELSE5
+ * @brief    Lecteur WAV : carte SD (FatFs/SDIO) -> I2S2 (DMA circulaire) -> PCM5102A
  *
  * Principe
  *   - Le DMA envoie en boucle un buffer circulaire vers SPI2/I2S2.
@@ -9,6 +10,28 @@
  *     fin de parcours (2e moitié libre). Ces callbacks ne font que lever un
  *     drapeau ; la lecture SD + conversion se font dans la boucle principale.
  *   - La fréquence I2S est recalculée pour chaque fichier (PLLI2S).
+ *   - La carte est détectée par PA15 (DSIO_DET) : attente à l'insertion,
+ *     arrêt propre si elle est retirée pendant la lecture.
+ *
+ * Références :
+ *   [1] TI, PCM5102A datasheet (SLAS859) - mode 3 fils : SCK à la masse, le DAC
+ *       déduit son horloge système de BCK = 32 x fs (limite ~96 kHz).
+ *       https://www.ti.com/product/PCM5102A
+ *   [2] ST, RM0090 (STM32F405/407/415/417) - chapitres I2S (registre I2SPR :
+ *       I2SDIV / ODD, formule de fs) et RCC (PLLI2SCFGR : N, R ; I2SCLK =
+ *       (f_PLLin / M) x N / R). https://www.st.com/resource/en/reference_manual/rm0090-stm32f405415-stm32f407417-stm32f427437-and-stm32f429439-advanced-armbased-32bit-mcus-stmicroelectronics.pdf
+ *   [3] ST, STM32CubeF4 / stm32f4xx_hal_driver, fichiers stm32f4xx_hal_i2s.c
+ *       (HAL_I2S_Init : calcul du diviseur, callbacks TxHalfCplt/TxCplt) et
+ *       stm32f4xx_hal_rcc_ex.c (HAL_RCCEx_PeriphCLKConfig).
+ *       https://github.com/STMicroelectronics/stm32f4xx_hal_driver
+ *       -> fonction audio_set_rate()
+ *   [4] ChaN, FatFs - API f_mount / f_opendir / f_readdir / f_read / f_lseek.
+ *       http://elm-chan.org/fsw/ff/
+ *   [5] Format RIFF/WAVE : Microsoft "WAVEFORMATEX / WAVEFORMATEXTENSIBLE" et
+ *       résumé de C. S. Sapp, "WAVE PCM soundfile format".
+ *       http://soundfile.sapp.org/doc/WaveFormat/
+ *   [6] PCM5102A - I2S audio
+ *   https://github.com/vadrov/stm32-i2s-audio-dac-pcm5102a
  *
  ******************************************************************************
  */
@@ -21,13 +44,16 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Handles générés par CubeMX */
+/* Handles générés par CubeMX (définis dans main.c) */
 extern I2S_HandleTypeDef hi2s2;
 #if WAV_ENABLE_UART_LOG
 extern UART_HandleTypeDef huart3;
 #endif
+#if WAV_SD_CLAMP_24MHZ
+extern SD_HandleTypeDef hsd;
+#endif
 
-/* LED d'état : on utilise le label CubeMX "LED_STATUS" s'il existe */
+/* LED d'état : label CubeMX "LED_STATUS" (PA2) */
 #ifndef LED_STATUS_Pin
 #define LED_STATUS_Pin        GPIO_PIN_2
 #define LED_STATUS_GPIO_Port  GPIOA
@@ -35,14 +61,26 @@ extern UART_HandleTypeDef huart3;
 #define LED_ON()   HAL_GPIO_WritePin(LED_STATUS_GPIO_Port, LED_STATUS_Pin, GPIO_PIN_SET)
 #define LED_OFF()  HAL_GPIO_WritePin(LED_STATUS_GPIO_Port, LED_STATUS_Pin, GPIO_PIN_RESET)
 
+/* Détection de carte : label CubeMX "DSIO_DET" (PA15). Sans label -> désactivée. */
+#if WAV_USE_CARD_DETECT && !defined(DSIO_DET_Pin)
+#warning "DSIO_DET_Pin absent de main.h : detection de carte desactivee"
+#undef  WAV_USE_CARD_DETECT
+#define WAV_USE_CARD_DETECT 0
+#endif
+
 /* Journal optionnel */
 #if WAV_ENABLE_UART_LOG
+/**
+ * @brief  Écrit une ligne de journal (printf) sur USART3
+ * @param  fmt  Format printf, suivi de ses arguments (...).
+ * @note   Ligne tronquée à 125 caractères
+ */
 static void wav_log(const char *fmt, ...)
 {
     char    line[128];
     va_list ap;
     va_start(ap, fmt);
-    int n = vsnprintf(line, sizeof line - 2u, fmt, ap);
+    int n = vsnprintf(line, sizeof line - 2u, fmt, ap); // Formatage d'une ligne
     va_end(ap);
     if (n < 0) {
         return;
@@ -52,6 +90,7 @@ static void wav_log(const char *fmt, ...)
     }
     line[n++] = '\r';
     line[n++] = '\n';
+    // Envoie sur USART3
     (void)HAL_UART_Transmit(&huart3, (uint8_t *)line, (uint16_t)n, 50);
 }
 #define LOG(...)  wav_log(__VA_ARGS__)
@@ -66,6 +105,7 @@ static void wav_log(const char *fmt, ...)
 #define WAV_STAGE_BYTES  1536u                     /* multiple de 1,2,3,4,6 */
 #define WAV_MIN_RATE     8000u
 #define WAV_MAX_RATE     96000u
+#define CARD_ABSENT_MAX  3u                        /* demi-buffers consécutifs "carte absente" avant arrêt */
 
 #define EV_HALF0         0x01u   /* 1re moitié du buffer libre  */
 #define EV_HALF1         0x02u   /* 2e moitié du buffer libre   */
@@ -80,12 +120,13 @@ enum {
     WAV_ERR_NO_DATA,
     WAV_ERR_FORMAT,
     WAV_ERR_RATE,
-    WAV_ERR_I2S
+    WAV_ERR_I2S,
+    WAV_ERR_NOCARD          /* carte retirée pendant la lecture */
 };
 
 /* ------------------------------- État ------------------------------------- */
 
-/* Buffer DMA stéréo entrelacé L,R,L,R... (RAM principale, pas la CCM) */
+/* Buffer DMA stéréo entrelacé L,R,L,R... */
 static int16_t dma_buf[WAV_BUF_FRAMES * 2u] __attribute__((aligned(32)));
 
 /* Zone de transit pour les formats à convertir (8/24 bits, mono) */
@@ -107,13 +148,23 @@ static struct {
 
 /* --------------------------- Callbacks HAL (ISR) --------------------------- */
 
+/**
+ * @brief  Callback HAL (contexte interruption) : le DMA a fini d'émettre la
+ *         1re moitié du buffer circulaire, elle peut être remplie.
+ * @param  hi2s  Handle I2S qui a déclenché l'événement (filtré sur SPI2).
+ */
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
 {
     if (hi2s->Instance == SPI2) {
-        ev_flags |= EV_HALF0;
+        ev_flags |= EV_HALF0; // OR exclusif
     }
 }
 
+/**
+ * @brief  Callback HAL (contexte interruption) : le DMA a fini d'émettre la
+ *         2e moitié du buffer (il repart au début), elle peut être remplie.
+ * @param  hi2s  Handle I2S qui a déclenché l'événement (filtré sur SPI2).
+ */
 void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s)
 {
     if (hi2s->Instance == SPI2) {
@@ -121,6 +172,11 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s)
     }
 }
 
+/**
+ * @brief  Callback HAL (contexte interruption) : erreur I2S ou DMA (sous-
+ *         alimentation, erreur de transfert). La lecture en cours est arrêtée.
+ * @param  hi2s  Handle I2S en erreur (filtré sur SPI2).
+ */
 void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
 {
     if (hi2s->Instance == SPI2) {
@@ -130,15 +186,27 @@ void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
 
 /* ------------------------------- Volume ----------------------------------- */
 
+/**
+ * @brief  Règle le volume logiciel, appliqué à chaque échantillon avant le DMA.
+ * @param  percent  0..100 (saturé à 100). Courbe quadratique : 50 % ~ -12 dB,
+ *                  perception acoustique humaine est plutot quadratique.
+ * @note   Le gain est stocké en Q15, en virgule fixe, ce qui permet un calcul plus léger et rapide.
+ *         (32768 = 2^15 = gain unitaire)
+ */
 void WavPlayer_SetVolume(uint8_t percent)
 {
     if (percent > 100u) {
         percent = 100u;
     }
-    /* Courbe quadratique : 50 % ~ -12 dB, plus proche de l'oreille qu'une rampe linéaire */
     gain_q15 = ((uint32_t)percent * percent * 32768u) / 10000u;
 }
 
+/**
+ * @brief  Multiplie `n` échantillons 16 bits par le gain courant (Q15)
+ * @param  p  Premier échantillon (entrelacé L,R,L,R...).
+ * @param  n  Nombre d'échantillons (et non de trames).
+ * @note   Ne fait rien à gain unitaire (volume 100 %).
+ */
 static void apply_gain(int16_t *p, uint32_t n)
 {
     const int32_t g = (int32_t)gain_q15;
@@ -151,21 +219,41 @@ static void apply_gain(int16_t *p, uint32_t n)
     }
 }
 
-/* ----------------------------- Parsing WAV -------------------------------- */
-
+/* -------------------------- Lecture en-tête WAV ----------------------------- */
+/**
+ * @brief Les fichiers WAV (format RIFF/WAVE) sont écrits sur des entiers 16/32 bits et sont encodées en little-endian. Il faut donc reconvertir les octets qui arrivent du FatFS
+ */
+/**
+ * @brief  Lit un entier 16 bits, little-endian à une adresse quelconque, octet par octet
+ * @param  p  Pointeur sur l'octet de poids faible
+ * @retval Valeur 16 bits non signée
+ */
 static uint16_t le16(const uint8_t *p)
 {
     return (uint16_t)((uint16_t)p[0] | ((uint16_t)p[1] << 8));
 }
 
+/**
+ * @brief  Lit un entier 32 bits, little-endian à une adresse quelconque, octet par octet
+ * @param  p  Pointeur sur l'octet de poids faible
+ * @retval Valeur 32 bits non signée
+ */
 static uint32_t le32(const uint8_t *p)
 {
     return (uint32_t)p[0] | ((uint32_t)p[1] << 8) | ((uint32_t)p[2] << 16) | ((uint32_t)p[3] << 24);
 }
 
 /**
- * Lit l'en-tête RIFF/WAVE, saute les chunks inconnus (LIST, fact, ...) et
- * laisse le pointeur de fichier au début des données audio.
+ * @brief  Analyse l'en-tête RIFF/WAVE du fichier ouvert (S.f) : lit le chunk
+ *         "fmt ", saute les chunks inconnus (LIST, fact, ...), puis laisse le
+ *         pointeur de fichier au début des données audio ("data").
+ * @note   Remplit S.channels, S.rate, S.bits, S.block_align, S.data_left.
+ *         Accepte PCM (tag 1) et WAVE_FORMAT_EXTENSIBLE contenant du PCM,
+ *         8/16/24 bits, 1 ou 2 canaux, 8000..96000 Hz. Un chunk "data" de
+ *         taille 0 ou trop grande (WAV "streamé") est borné à la fin du fichier.
+ * @retval WAV_OK ; WAV_ERR_IO (lecture) ; WAV_ERR_NOT_WAV (pas RIFF/WAVE) ;
+ *         WAV_ERR_NO_DATA (pas de données) ; WAV_ERR_FORMAT (format non géré) ;
+ *         WAV_ERR_RATE (fréquence hors 8..96 kHz).
  */
 static int wav_parse(void)
 {
@@ -250,17 +338,34 @@ static int wav_parse(void)
 
 /* ------------------------- Lecture + conversion --------------------------- */
 
+/**
+ * @brief  Convertit UN échantillon WAV (8, 16 ou 24 bits) en 16 bits signé
+ * @param  p     Pointeur sur l'échantillon (little-endian)
+ * @param  bits  Largeur de l'échantillon : 8, 16 ou 24
+ * @retval Échantillon 16 bits signé. 8 bits : non signé -> signé, x256.
+ *         24 bits : on garde les 16 bits de poids fort
+ * @note   *256 plutôt que << 8 car décaler une valeur négative est un
+ *         comportement indéfini en C (https://stackoverflow.com/questions/4945703/left-shifting-with-a-negative-shift-count)
+ */
 static int16_t rd_sample(const uint8_t *p, uint16_t bits)
 {
     if (bits == 8u) {
-        return (int16_t)(((int32_t)p[0] - 128) * 256);         /* non signé -> signé 16 bits (pas de << sur négatif) */
+        return (int16_t)(((int32_t)p[0] - 128) * 256);
     }
     if (bits == 16u) {
         return (int16_t)le16(p);
     }
-    return (int16_t)le16(p + 1);                                /* 24 bits : on garde les 16 bits de poids fort */
+    return (int16_t)le16(p + 1);
 }
 
+/**
+ * @brief  Convertit `frames` trames du buffer de transit `src` (format du
+ *         fichier : 8/16/24 bits, mono/stéréo) vers du 16 bits stéréo entrelacé.
+ * @param  dst     Destination L,R,L,R... (2 x frames échantillons).
+ * @param  src     Trames lues du fichier (S.block_align octets chacune).
+ * @param  frames  Nombre de trames à convertir.
+ * @note   Mono : le même échantillon est copié à gauche et à droite.
+ */
 static void convert(int16_t *dst, const uint8_t *src, uint32_t frames)
 {
     const uint16_t bytes = S.bits / 8u;
@@ -280,8 +385,14 @@ static void convert(int16_t *dst, const uint8_t *src, uint32_t frames)
 }
 
 /**
- * Remplit `frames` trames stéréo 16 bits dans dst (silence si le fichier est fini).
- * @return nombre de trames réellement issues du fichier
+ * @brief  Remplit `frames` trames stéréo 16 bits dans `dst` depuis le fichier,
+ *         applique le volume, et complète par du silence si le fichier est fini.
+ * @param  dst     Zone de destination dans le buffer DMA.
+ * @param  frames  Nombre de trames demandées.
+ * @retval Nombre de trames réellement issues du fichier (< frames en fin de fichier).
+ * @note   WAV 16 bits stéréo : f_read écrit directement dans le buffer DMA (voie
+ *         rapide). Autres formats : lecture dans `stage` puis convert().
+ *         Une erreur de lecture positionne S.io_error et termine le fichier.
  */
 static uint32_t fill_frames(int16_t *dst, uint32_t frames)
 {
@@ -326,7 +437,12 @@ static uint32_t fill_frames(int16_t *dst, uint32_t frames)
     return done;
 }
 
-/** Remplit une moitié du buffer DMA. @return 1 si la source est épuisée. */
+/**
+ * @brief  Remplit une moitié (0 ou 1) du buffer DMA circulaire.
+ * @param  half  0 = première moitié, 1 = seconde moitié.
+ * @retval 1 si la source est épuisée (la moitié contient la fin du fichier,
+ *         éventuellement complétée de silence), 0 sinon.
+ */
 static int fill_half(unsigned half)
 {
     const uint32_t n = fill_frames(dma_buf + (size_t)half * HALF_FRAMES * 2u, HALF_FRAMES);
@@ -336,9 +452,16 @@ static int fill_half(unsigned half)
 /* --------------------------- Horloge audio I2S ---------------------------- */
 
 /**
- * Cherche (N, R) du PLLI2S pour obtenir la fréquence d'échantillonnage la plus
- * juste, en reproduisant le calcul de diviseur du HAL (16 bits, sans MCLK).
- * Le PLLI2S partage le diviseur M du PLL principal.
+ * @brief  Configure le PLLI2S et le diviseur I2S pour obtenir la fréquence
+ *         d'échantillonnage `fs` la plus juste possible.
+ * @param  fs  Fréquence voulue en Hz (8000..96000).
+ * @retval 0 si OK ; -1 PLLM invalide ; -2 aucune combinaison à moins de 1 % ;
+ *         -3 échec de HAL_RCCEx_PeriphCLKConfig ; -4 échec de HAL_I2S_Init.
+ * @note   Parcourt R (2..7) et N (50..432) et reproduit la formule de
+ *         HAL_I2S_Init [3] : tmp = ((clk/32 * 10) / fs + 5) / 10 = 2*I2SDIV + ODD
+ *         (16 bits, sans MCLK, BCK = 32 x fs). Le PLLI2S partage la source et
+ *         le diviseur M du PLL principal : ils sont lus dans RCC->PLLCFGR, donc
+ *         valables quelle que soit la source de SYSCLK (HSI ou PLL).
  */
 static int audio_set_rate(uint32_t fs)
 {
@@ -396,16 +519,83 @@ static int audio_set_rate(uint32_t fs)
     return 0;
 }
 
+/* ----------------------- Carte SD : détection, horloge -------------------- */
+
+/**
+ * @brief  Indique si une carte SD est insérée (lecture brute de DSIO_DET, PA15).
+ * @retval 1 si présente ; 0 si absente. Sans détection configurée
+ *         (WAV_USE_CARD_DETECT == 0) : renvoie toujours 1.
+ * @note   Contact du support micro-SD : fermé vers la masse quand la carte est
+ *         là, pull-up externe sur la carte -> niveau bas = présente
+ *         (WAV_CD_PRESENT_LEVEL). Pas d'anti-rebond ici : voir wait_card()
+ *         et CARD_ABSENT_MAX.
+ */
+static int card_present(void)
+{
+#if WAV_USE_CARD_DETECT
+    return HAL_GPIO_ReadPin(DSIO_DET_GPIO_Port, DSIO_DET_Pin) == WAV_CD_PRESENT_LEVEL;
+#else
+    return 1;
+#endif
+}
+
+/**
+ * @brief  Bloque tant qu'aucune carte n'est insérée de façon stable (4 lectures
+ *         consécutives espacées de 50 ms = anti-rebond de 200 ms).
+ * @note   La LED d'état fait un court éclair environ chaque seconde pendant
+ *         l'attente (code "1 clignotement" : pas de carte). Retourne tout de
+ *         suite si la détection est désactivée.
+ */
+static void wait_card(void)
+{
+#if WAV_USE_CARD_DETECT
+    unsigned stable = 0u;
+    unsigned tick   = 0u;
+
+    while (stable < 4u) {
+        if (card_present()) {
+            stable++;
+        } else {
+            stable = 0u;
+            if ((tick++ % 20u) == 0u) {
+                LED_ON();
+                HAL_Delay(50);
+                LED_OFF();
+                continue;
+            }
+        }
+        HAL_Delay(50);
+    }
+#endif
+}
+
 /* ------------------------------- Lecture ---------------------------------- */
 
+/**
+ * @brief  Joue un fichier WAV de bout en bout : ouverture, lecture de l'en-tête,
+ *         réglage de l'horloge I2S, pré-remplissage, lancement du DMA circulaire,
+ *         puis ré-remplissage des moitiés du buffer à chaque callback.
+ * @param  path  Chemin FatFs complet du fichier (ex. "0:/musique.wav").
+ * @param  name  Nom court, utilisé seulement pour le journal.
+ * @retval WAV_OK ; WAV_ERR_OPEN/NOT_WAV/NO_DATA/FORMAT/RATE (fichier refusé) ;
+ *         WAV_ERR_I2S (erreur I2S/DMA) ; WAV_ERR_IO (lecture SD) ;
+ *         WAV_ERR_NOCARD (carte retirée pendant la lecture).
+ * @note   La fin du fichier est détectée en deux temps : la moitié contenant
+ *         la dernière donnée est remplie (complétée de silence), puis la lecture
+ *         s'arrête quand le DMA a fini de l'émettre entièrement. Si les deux
+ *         drapeaux arrivent ensemble, une moitié a été manquée : micro-coupure
+ *         comptée dans `underruns` (carte SD trop lente).
+ */
 static int play_file(const char *path, const char *name)
 {
     int      rc;
     int      eof       = 0;
     unsigned last_half = 0u;
     uint32_t underruns = 0u;
+    unsigned absent    = 0u;
     int      result    = WAV_OK;
 
+    (void)name;                                           /* utilisé seulement par LOG() */
     memset(&S, 0, sizeof S);
     if (f_open(&S.f, path, FA_READ) != FR_OK) {
         return WAV_ERR_OPEN;
@@ -460,6 +650,14 @@ static int play_file(const char *path, const char *name)
             result = WAV_ERR_I2S;
             break;
         }
+        if (!card_present()) {                            /* carte retirée : arrêt après 3 demi-buffers (~140 ms) */
+            if (++absent >= CARD_ABSENT_MAX) {
+                result = WAV_ERR_NOCARD;
+                break;
+            }
+        } else {
+            absent = 0u;
+        }
         if ((f & (EV_HALF0 | EV_HALF1)) == (EV_HALF0 | EV_HALF1)) {
             underruns++;                                  /* on a raté une moitié : micro-coupure */
         }
@@ -497,6 +695,11 @@ static int play_file(const char *path, const char *name)
 
 /* ------------------------- Boucle principale ------------------------------ */
 
+/**
+ * @brief  Teste si un nom de fichier se termine par ".wav" (insensible à la casse).
+ * @param  name  Nom de fichier FatFs (chaîne terminée par 0).
+ * @retval 1 si l'extension est .wav (avec au moins 1 caractère avant), 0 sinon.
+ */
 static int has_wav_ext(const char *name)
 {
     const size_t n = strlen(name);
@@ -508,7 +711,13 @@ static int has_wav_ext(const char *name)
            tolower((unsigned char)e[3]) == 'v';
 }
 
-/** Code lumineux : n clignotements puis une pause. 1 = SD, 2 = aucun WAV, 3 = fichier refusé, 4 = I2S. */
+/**
+ * @brief  Signale un état par la LED d'état : `n` clignotements de 150 ms puis
+ *         une pause de 900 ms. 1 = carte SD, 2 = aucun WAV, 3 = fichier refusé,
+ *         4 = erreur I2S.
+ * @param  n  Nombre de clignotements.
+ * @note   Bloquant (HAL_Delay) : n'est jamais appelée pendant une lecture.
+ */
 static void blink(unsigned n)
 {
     while (n--) {
@@ -520,6 +729,15 @@ static void blink(unsigned n)
     HAL_Delay(900);
 }
 
+/**
+ * @brief  Point d'entrée du lecteur (voir wav_player.h). Boucle : attendre la
+ *         carte, la monter, parcourir la racine, jouer chaque .wav, recommencer.
+ * @note   Ignore les dossiers, fichiers cachés/système, noms commençant par '.'
+ *         (fichiers "._xxx" de macOS) et tout ce qui n'est pas .wav (tes
+ *         fichiers de test uptime.dat, tick.txt, big.dat sont donc sans effet).
+ *         Variables `static` (dir, fno, path) pour ne pas peser sur la
+ *         pile, dimensionnée à 0x400 par défaut dans CubeMX : voir README.
+ */
 void WavPlayer_Run(void)
 {
     static DIR     dir;
@@ -530,7 +748,13 @@ void WavPlayer_Run(void)
 
     for (;;) {
         unsigned played = 0u;
-        FRESULT  fr     = f_mount(&SDFatFS, (const TCHAR *)SDPath, 1);
+        int      removed = 0;
+        FRESULT  fr;
+
+        wait_card();
+        sd_clamp_clock();
+        fr = f_mount(&SDFatFS, (const TCHAR *)SDPath, 1);
+        sd_clamp_clock();                                 /* l'init HAL vient peut-être de réappliquer le bypass */
 
         if (fr != FR_OK) {
             LOG("Montage SD impossible (FRESULT %d)", (int)fr);
@@ -556,6 +780,9 @@ void WavPlayer_Run(void)
             const int rc = play_file(path, fno.fname);
             if (rc == WAV_OK) {
                 played++;
+            } else if (!card_present()) {
+                removed = 1;                              /* carte retirée : on abandonne ce passage */
+                break;
             } else if (rc == WAV_ERR_I2S) {
                 blink(4u);
             } else {
@@ -564,6 +791,11 @@ void WavPlayer_Run(void)
         }
         (void)f_closedir(&dir);
 
+        if (removed) {
+            LOG("Carte retiree");
+            (void)f_mount(NULL, (const TCHAR *)SDPath, 0);
+            continue;                                     /* wait_card() attendra la suivante */
+        }
         if (played == 0u) {
             LOG("Aucun fichier .wav lisible a la racine de la carte");
             blink(2u);

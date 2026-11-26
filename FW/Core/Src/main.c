@@ -47,6 +47,7 @@ ADC_HandleTypeDef hadc1;
 I2C_HandleTypeDef hi2c1;
 
 I2S_HandleTypeDef hi2s2;
+DMA_HandleTypeDef hdma_spi2_tx;
 
 RTC_HandleTypeDef hrtc;
 
@@ -274,66 +275,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  now = uwTick;
 
-		  if (now >= next_blink) {
-			  HAL_GPIO_TogglePin(LED_STATUS_GPIO_Port, LIGHT_LED_Pin);
-			  next_blink += 500;
-		  }
-
-		  if (now >= next_tick) {
-
-			  ++total_uptime;
-
-			  char s[128];
-
-			  sprintf(s, "Tick %lu (loop = %lu total = %llu)\n", now / 1000, loop_cnt, total_uptime);
-
-			  printf("%s", s);
-
-			  // Write tick line to file
-			  if (f_open(&SDFile, tick_filename, FA_OPEN_APPEND | FA_WRITE) == FR_OK) {
-				  if (f_write(&SDFile, &s, strlen(s) + 1, (void*) &wbytes) != FR_OK) {
-					  printf("Unable to write\n");
-				  }
-				  f_close(&SDFile);
-			  } else {
-				  printf("Unable to open tick file\n");
-			  }
-
-			  // Update the total uptime file
-			  if (f_open(&SDFile, total_uptime_filename, FA_OPEN_EXISTING | FA_WRITE) == FR_OK) {
-				  if (f_write(&SDFile, &total_uptime, sizeof(total_uptime), (void*) &wbytes) != FR_OK) {
-					  printf("Unable to write\n");
-				  }
-				  f_close(&SDFile);
-			  } else {
-				  printf("Unable to open file\n");
-			  }
-
-			  loop_cnt = 0;
-			  next_tick = now + 1000;
-		  }
-
-		  if (now >= next_ls) {
-
-			  uint32_t start = uwTick;
-			  uint32_t total = 0;
-			  if (f_open(&SDFile, big_filename, FA_OPEN_EXISTING | FA_READ) == FR_OK) {
-				  while (f_read(&SDFile, &buf, sizeof(buf), (void*) &rbytes) == FR_OK && rbytes == sizeof(buf)) {
-					  total += rbytes;
-				  }
-				  f_close(&SDFile);
-			  } else {
-				  printf("Unable to open %s\n", big_filename);
-			  }
-			  printf("Read %lu bytes took %lu ms\n", total, uwTick - start);
-
-			  ls();
-			  next_ls = now + 10000;
-		  }
-
-		  ++loop_cnt;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -356,12 +298,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
-                              |RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
@@ -377,12 +316,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -588,7 +527,7 @@ static void MX_SDIO_SD_Init(void)
   /* USER CODE END SDIO_Init 1 */
   hsd.Instance = SDIO;
   hsd.Init.ClockEdge = SDIO_CLOCK_EDGE_RISING;
-  hsd.Init.ClockBypass = SDIO_CLOCK_BYPASS_ENABLE;
+  hsd.Init.ClockBypass = SDIO_CLOCK_BYPASS_DISABLE;
   hsd.Init.ClockPowerSave = SDIO_CLOCK_POWER_SAVE_DISABLE;
   hsd.Init.BusWide = SDIO_BUS_WIDE_1B;
   hsd.Init.HardwareFlowControl = SDIO_HARDWARE_FLOW_CONTROL_DISABLE;
@@ -640,8 +579,12 @@ static void MX_DMA_Init(void)
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Stream4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream4_IRQn);
   /* DMA2_Stream3_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
