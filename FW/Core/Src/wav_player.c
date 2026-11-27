@@ -752,9 +752,7 @@ void WavPlayer_Run(void)
         FRESULT  fr;
 
         wait_card();
-        sd_clamp_clock();
         fr = f_mount(&SDFatFS, (const TCHAR *)SDPath, 1);
-        sd_clamp_clock();                                 /* l'init HAL vient peut-être de réappliquer le bypass */
 
         if (fr != FR_OK) {
             LOG("Montage SD impossible (FRESULT %d)", (int)fr);
